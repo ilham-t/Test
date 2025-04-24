@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Test</title>
+  <style>
+    /* Copy the CSS from above */
+    body {
+      background: #333;
+      margin: 0;
+    }
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    .nav--active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .nav__button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .nav__icon {
+      position: relative;
+      display: block;
+      width: 30px;
+      height: 2px;
+      background: #fff;
+      transition: all 0.3s ease;
+    }
+    .nav__icon::before,
+    .nav__icon::after {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 2px;
+      background: #fff;
+      transition: all 0.3s ease;
+    }
+    .nav__icon::before {
+      top: -8px;
+    }
+    .nav__icon::after {
+      top: 8px;
+    }
+    .nav--active .nav__icon {
+      background: transparent;
+    }
+    .nav--active .nav__icon::before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+    .nav--active .nav__icon::after {
+      transform: rotate(-45deg);
+      top: 0;
+    }
+    .nav__links {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .nav__item {
+      margin: 15px 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
+    .nav--active .nav__item {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .nav--active .nav__item:nth-child(1) { transition-delay: 0.1s; }
+    .nav--active .nav__item:nth-child(2) { transition-delay: 0.2s; }
+    .nav--active .nav__item:nth-child(3) { transition-delay: 0.3s; }
+    .nav--active .nav__item:nth-child(4) { transition-delay: 0.4s; }
+    .nav__link {
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+    .nav__link:hover {
+      color: #00ccff;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__button">
+      <span class="nav__icon"></span>
+    </div>
+    <ul class="nav__links">
+      <li class="nav__item"><a class="nav__link" href="#home">Home</a></li>
+      <li class="nav__item"><a class="nav__link" href="#about">About</a></li>
+      <li class="nav__item"><a class="nav__link" href="#portfolio">Portfolio</a></li>
+      <li class="nav__item"><a class="nav__link" href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <script>
+    document.querySelector('.nav__button').addEventListener('click', () => {
+      document.querySelector('.nav').classList.toggle('nav--active');
+    });
+  </script>
+</body>
+</html>
